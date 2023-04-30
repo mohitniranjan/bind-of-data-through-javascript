@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <h1>Students Management System</h1>
+        <div class="row">
+            <div class="col-sm-2" style="background-color:lavender;">
+                <div class="container-fluid p-5 my-2">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#" onclick="ShowfrmCourse();">Course Details</a></li>
+                        <li><a href="#" onclick="ShowfrmStudents();">Student Details</a></li>
+                        <li><a href="#">Faculty Details</a></li>
+                        <li><a href="#">Company Information</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-10 " style="background-color:lavenderblush;">
+                <div class="container-fluid" style="height: 700px;">
+
+                    <div id="StudentDetails">
+                        <h2 style="border-bottom: 2px red solid;">Student Details </h2>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                            data-target="#myStudent">Add Student</button>
+                        <!-- Modal -->
+                        <div id="myStudent" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Student Details</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--Student Form-->
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="ENO">Enrollment No:</label>
+                                                <input type="ENO" class="form-control" id="eNo">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="StudentName">Student Name:</label>
+                                                <input type="StudentName" class="form-control" id="sName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="CourseName">Course Name:</label>
+                                                <select type="CourseName" class="form-control" id="sCName"
+                                                    onchange="btnclick();"></select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="CourseFee">Course Fee:</label>
+                                                <input type="CourseFee" class="form-control" id="sCFee">
+                                            </div>
+
+                                        </form>
+
+                                        <!--End Student Form-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default" onclick="AddData();">Save</button>
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="CourseDetails">
+                        <h1 style="border-bottom: 2px red solid;">Course Details </h1>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                            data-target="#myCourse">Add Course</button>
+                            <table class="list" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Course Name</th>
+                                        <th>Course Fee</th>
+                                        <th> Course Duration</th>
+
+                                       <th>Action</th>
+                                       
+                                    </tr>
+                                    
+                                        
+                                      
+                                </thead>
+                                <tbody>
+                        
+                     </tbody>
+                            </table>
+                          <!-- Table -->
+
+                        <!-- Modal -->
+                        <div id="myCourse" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Course Details</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--Course Form-->
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="CourseID">Course ID:</label>
+                                                <input type="CourseID" class="form-control" id="cID">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="CourseName">Course Name:</label>
+                                                <input type="CourseName" class="form-control" id="cName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="CourseFee">Course Fee:</label>
+                                                <input type="CourseFee" class="form-control" id="cFee">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="CourseDuration">Course Duration:</label>
+                                                <input type="CourseDuration" class="form-control" id="cDuration">
+                                            </div>
+                                    <button type="button" onclick="addData()">AddData</button>
+                                        </form>
+
+                                        <!--End Course Form-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default" onclick="AddData();">Save</button>
+                                        <button type="button" class="btn btn-default"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--End Course-->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    var frmStudent = document.getElementById("StudentDetails");
+    var frmCourse = document.getElementById("CourseDetails");
+    frmStudent.style.display = "none";
+    frmCourse.style.display = "none";
+
+    function ShowfrmStudents() {
+        frmStudent.style.display = "block";
+        frmCourse.style.display = "none";
+        BindData();
+    }
+
+    function ShowfrmCourse() {
+        frmStudent.style.display = "none";
+        frmCourse.style.display = "block";
+    }
+
+    var CourseID = [];
+    var CourseName = [];
+    var CourseFee = [];
+    var CourseDuration = [];
+
+    function AddData() {
+        CourseID.push(document.getElementById("cID").value);
+        CourseName.push(document.getElementById("cName").value);
+        CourseFee.push(document.getElementById("cFee").value);
+        CourseDuration.push(document.getElementById("cDuration").value);
+
+        document.getElementById("cID").value = "";
+        document.getElementById("cName").value = "";
+        document.getElementById("cFee").value = "";
+        document.getElementById("cDuration").value = "";
+
+        document.getElementById("cID").focus
+        alert(CourseID.length);
+    }
+    function BindData() {
+
+        var Select = document.getElementById("sCName");
+        for (let i = 0; i < CourseName.length; i++) {
+
+            var optn = CourseName[i];
+            var el = document.createElement("option");
+            el.textContent = optn;
+            el.value = i;
+            Select.appendChild(el);
+
+        }
+    }
+
+    function btnclick() {
+        const sb = document.querySelector('#sCName');
+        document.getElementById("sCFee").value = CourseFee[sb.value];
+    }
+
+    function addData() {
+        // Get form values
+        var cID = document.getElementById("cID").value;
+        var cName = document.getElementById("cName").value;
+        var cFee = document.getElementById("cFee").value;
+        var cDuration = document.getElementById("cDuration").value;
+      
+        // Create new table row
+        var row = document.createElement("tr");
+      
+        // Create and append cId cell
+        var cIDCell = document.createElement("td");
+        cIDCell.innerHTML = cID;
+        row.appendChild(cIDCell);
+      
+        // Create and append cName cell
+        var cNameCell = document.createElement("td");
+        cNameCell.innerHTML = cName;
+        row.appendChild(cNameCell);
+
+         // Create and append cFee cell
+         var cFeeCell = document.createElement("td");
+         cFeeCell.innerHTML = cFee;
+         row.appendChild(cFeeCell);
+
+          // Create and append cDuration cell
+        var cDurationCell = document.createElement("td");
+        cDurationCell.innerHTML = cDuration;
+        row.appendChild(cDurationCell);
+
+        
+     
+
+
+       var btnCell = document.createElement("td");
+            btnCell.innerHTML = `<button onClick="editRow(this)"><i class="fa fa-pencil-square-o" style="font-size:30px"></i></button>
+        <button onClick="onDelete()"><i class="fa fa-trash" style="font-size:30px"></i></button>`;
+            row.appendChild(btnCell);
+
+        // Add new row to table
+        var table = document.getElementById("myTable");
+        table.getElementsByTagName('tbody')[0].appendChild(row);
+ }
+ function onDelete() {
+            if (confirm('Are you sure to delete this record ?')) {
+                var table = document.getElementById("myTable");
+                var rowIndex = 1; // index of row to be deleted
+                table.deleteRow(rowIndex);
+            }
+        }
+
+
+        function editRow(rowIndex, newValues, tableID) {
+  // Get the table element
+  const table = document.getElementById(tableID);
+
+  // Get the row to edit
+  const row = table.rows[rowIndex];
+
+  // Update the cell values
+  for (let i = 0; i < row.cells.length; i++) {
+    row.cells[i].textContent = newValues[i];
+  }
+}     
+
+</script>
+    
+</body>
+</html>
